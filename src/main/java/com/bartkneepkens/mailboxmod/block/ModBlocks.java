@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.bartkneepkens.postoffice.block;
+package com.bartkneepkens.mailboxmod.block;
 
+import com.bartkneepkens.mailboxmod.tileentity.MailboxTileEntity;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -23,6 +24,7 @@ public class ModBlocks {
     public static final void init() {
         GameRegistry.registerBlock(mailboxBlock = new MailboxBlock("mailbox", Material.wood), "mailbox");
         GameRegistry.addRecipe(new ItemStack(ModBlocks.mailboxBlock, 2), "###", "$ $", "###", '#', Blocks.planks, '$', Items.iron_ingot);
+        GameRegistry.registerTileEntity(MailboxTileEntity.class, "mailboxEntity");
     }
     
 }

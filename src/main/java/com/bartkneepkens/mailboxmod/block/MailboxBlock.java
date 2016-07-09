@@ -3,9 +3,9 @@
 * To change this template file, choose Tools | Templates
 * and open the template in the editor.
 */
-package com.bartkneepkens.postoffice.block;
+package com.bartkneepkens.mailboxmod.block;
 
-import com.bartkneepkens.postoffice.PostOfficeMod;
+import com.bartkneepkens.mailboxmod.MailBoxMod;
 import net.minecraft.block.Block;
 import static net.minecraft.block.Block.soundTypeWood;
 import net.minecraft.block.BlockContainer;
@@ -27,7 +27,7 @@ public class MailboxBlock extends BlockContainer {
     protected MailboxBlock(String name, Material material) {
         super(material);
         this.setBlockName(name);
-        this.setBlockTextureName(PostOfficeMod.MODID + ":" + name);
+        this.setBlockTextureName(MailBoxMod.MODID + ":" + name);
         this.setCreativeTab(CreativeTabs.tabBlock);
         this.setHardness(2.0F);
         this.setResistance(6.0F);

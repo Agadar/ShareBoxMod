@@ -3,9 +3,9 @@
 * To change this template file, choose Tools | Templates
 * and open the template in the editor.
 */
-package com.bartkneepkens.postoffice.proxy;
+package com.bartkneepkens.mailboxmod.proxy;
 
-import com.bartkneepkens.postoffice.block.ModBlocks;
+import com.bartkneepkens.mailboxmod.block.ModBlocks;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;

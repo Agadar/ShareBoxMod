@@ -3,9 +3,9 @@
 * To change this template file, choose Tools | Templates
 * and open the template in the editor.
 */
-package com.bartkneepkens.postoffice;
+package com.bartkneepkens.mailboxmod;
 
-import com.bartkneepkens.postoffice.proxy.CommonProxy;
+import com.bartkneepkens.mailboxmod.proxy.CommonProxy;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -18,14 +18,14 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
  *
  * @author BartKneepkens
  */
-@Mod(modid = PostOfficeMod.MODID, name = PostOfficeMod.MODNAME, version = PostOfficeMod.VERSIONID)
-public class PostOfficeMod{
+@Mod(modid = MailBoxMod.MODID, name = MailBoxMod.MODNAME, version = MailBoxMod.VERSIONID)
+public class MailBoxMod{
     
-    public static final String MODID = "postoffice";
-    public static final String MODNAME = "Post Office Mod";
+    public static final String MODID = "mailboxmod";
+    public static final String MODNAME = "Mailbox Mod";
     public static final String VERSIONID = "1.0.0";
     
-    @SidedProxy(clientSide="com.bartkneepkens.postoffice.proxy.ClientProxy", serverSide="com.bartkneepkens.postoffice.proxy.ServerProxy")
+    @SidedProxy(clientSide="com.bartkneepkens.mailboxmod.proxy.ClientProxy", serverSide="com.bartkneepkens.mailboxmod.proxy.ServerProxy")
     public static CommonProxy proxy;
     
     @EventHandler
