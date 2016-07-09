@@ -21,7 +21,7 @@ public class ModBlocks {
     public static Block mailboxBlock;
 
     public static final void init() {
-        GameRegistry.registerBlock(mailboxBlock = new MailboxBlock("mailbox", Material.cloth), "mailbox");
+        GameRegistry.registerBlock(mailboxBlock = new MailboxBlock("mailbox", Material.wood), "mailbox");
         GameRegistry.addRecipe(new ItemStack(ModBlocks.mailboxBlock, 2), "###", "$ $", "###", '#', Blocks.planks, '$', Items.iron_ingot);
     }
     
