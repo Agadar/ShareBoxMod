@@ -7,6 +7,7 @@ package com.bartkneepkens.mailboxmod.block;
 
 import com.bartkneepkens.mailboxmod.MailBoxMod;
 import com.bartkneepkens.mailboxmod.tileentity.MailboxTileEntity;
+import java.util.Random;
 import net.minecraft.block.Block;
 import static net.minecraft.block.Block.soundTypeWood;
 import net.minecraft.block.BlockContainer;
@@ -25,6 +26,10 @@ import net.minecraft.world.World;
  * @author Bart  Kneepkens
  */
 public class MailboxBlock extends BlockContainer {
+    
+    // Stock Chest behaviour
+    private final Random field_149955_b = new Random();
+    
     
     public IIcon[] icons = new IIcon[6];
     
@@ -62,39 +67,53 @@ public class MailboxBlock extends BlockContainer {
         return new MailboxTileEntity();
     }
     
+    // Stock code from the vanilla Chest for breaking.
     @Override
-    public void breakBlock(World world, int x, int y, int z, Block p_149749_5_, int p_149749_6_){
-        MailboxTileEntity tileentity = (MailboxTileEntity) world.getTileEntity(x, y, z);
+    public void breakBlock(World p_149749_1_, int p_149749_2_, int p_149749_3_, int p_149749_4_, Block p_149749_5_, int p_149749_6_){
+        MailboxTileEntity tileentitychest = (MailboxTileEntity)p_149749_1_.getTileEntity(p_149749_2_, p_149749_3_, p_149749_4_);
         
-        if(tileentity != null) {
-            for(int i = 0; i < tileentity.getSizeInventory(); i++) {
-                ItemStack itemstack = tileentity.getStackInSlot(i);
+        if (tileentitychest != null)
+        {
+            for (int i1 = 0; i1 < tileentitychest.getSizeInventory(); ++i1)
+            {
+                ItemStack itemstack = tileentitychest.getStackInSlot(i1);
                 
-                if(itemstack != null) {
+                if (itemstack != null)
+                {
+                    float f = this.field_149955_b.nextFloat() * 0.8F + 0.1F;
+                    float f1 = this.field_149955_b.nextFloat() * 0.8F + 0.1F;
+                    EntityItem entityitem;
                     
-                    while(itemstack.stackSize > 0) {
-                        int j =  10;
+                    for (float f2 = this.field_149955_b.nextFloat() * 0.8F + 0.1F; itemstack.stackSize > 0; p_149749_1_.spawnEntityInWorld(entityitem))
+                    {
+                        int j1 = this.field_149955_b.nextInt(21) + 10;
                         
-                        if(j > itemstack.stackSize) {
-                            j = itemstack.stackSize;
+                        if (j1 > itemstack.stackSize)
+                        {
+                            j1 = itemstack.stackSize;
                         }
                         
-                        itemstack.stackSize -= j;
+                        itemstack.stackSize -= j1;
+                        entityitem = new EntityItem(p_149749_1_, (double)((float)p_149749_2_ + f), (double)((float)p_149749_3_ + f1), (double)((float)p_149749_4_ + f2), new ItemStack(itemstack.getItem(), j1, itemstack.getItemDamage()));
+                        float f3 = 0.05F;
+                        entityitem.motionX = (double)((float)this.field_149955_b.nextGaussian() * f3);
+                        entityitem.motionY = (double)((float)this.field_149955_b.nextGaussian() * f3 + 0.2F);
+                        entityitem.motionZ = (double)((float)this.field_149955_b.nextGaussian() * f3);
                         
-                        EntityItem item = new EntityItem(world, (double)((float)x ), (double)((float)y ), (double)((float)z ), new ItemStack(itemstack.getItem(), j, itemstack.getItemDamage()));
-                        
-                        if(itemstack.hasTagCompound()) {
-                            item.getEntityItem().setTagCompound((NBTTagCompound)itemstack.getTagCompound().copy());
+                        if (itemstack.hasTagCompound())
+                        {
+                            entityitem.getEntityItem().setTagCompound((NBTTagCompound)itemstack.getTagCompound().copy());
                         }
-                        
-                        world.spawnEntityInWorld(item);
                     }
                 }
             }
             
+            p_149749_1_.func_147453_f(p_149749_2_, p_149749_3_, p_149749_4_, p_149749_5_);
         }
+        
+        super.breakBlock(p_149749_1_, p_149749_2_, p_149749_3_, p_149749_4_, p_149749_5_, p_149749_6_);
     }
-        
-        
-        
-    }
+    
+    
+    
+}
