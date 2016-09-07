@@ -48,12 +48,18 @@ public class MailboxBlock extends BlockContainer {
     @Override
     public void registerBlockIcons(IIconRegister reg) {
         for (int i = 0; i < 6; i ++) {
-            if(i <= 1){
-                this.icons[i] = reg.registerIcon(this.textureName + "_planks");
-            }
-            else{
+//            if(i <= 2){
+//                this.icons[i] = reg.registerIcon("planks_oak");
+//            }
+            if(i == 4){
                 this.icons[i] = reg.registerIcon(this.textureName + "_side");
             }
+            else {
+                this.icons[i] = reg.registerIcon("planks_oak");
+            }
+//            else{
+//                this.icons[i] = reg.registerIcon(this.textureName + "_side");
+//            }
         }
     }
     
@@ -113,7 +119,5 @@ public class MailboxBlock extends BlockContainer {
         
         super.breakBlock(p_149749_1_, p_149749_2_, p_149749_3_, p_149749_4_, p_149749_5_, p_149749_6_);
     }
-    
-    
     
 }
