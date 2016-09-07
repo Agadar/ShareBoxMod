@@ -23,7 +23,7 @@ public class MailboxTileEntity extends TileEntity implements IInventory{
     private String customName;
     
     public MailboxTileEntity() {
-        this.inventory = new ItemStack[9];
+        this.inventory = new ItemStack[27];
     }
     
     public ItemStack[] getInventory() {
@@ -45,7 +45,7 @@ public class MailboxTileEntity extends TileEntity implements IInventory{
     
     @Override
     public int getSizeInventory() {
-        return 9;
+        return 27;
     }
     
     @Override
