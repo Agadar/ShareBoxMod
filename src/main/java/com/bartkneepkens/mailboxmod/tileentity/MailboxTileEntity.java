@@ -5,6 +5,7 @@
 */
 package com.bartkneepkens.mailboxmod.tileentity;
 
+import com.bartkneepkens.mailboxmod.block.ModBlocks;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
@@ -19,19 +20,18 @@ import net.minecraft.tileentity.TileEntity;
  */
 public class MailboxTileEntity extends TileEntity implements IInventory{
     
-    private ItemStack[] inventory;
+    public static ItemStack[] inventory;
     private String customName;
     
     public MailboxTileEntity() {
-        this.inventory = new ItemStack[27];
     }
     
     public ItemStack[] getInventory() {
-        return inventory;
+        return MailboxTileEntity.inventory;
     }
     
     public void setInventory(ItemStack[] inventory) {
-        this.inventory = inventory;
+        MailboxTileEntity.inventory = inventory;
     }
     
     public String getCustomName() {
@@ -45,14 +45,14 @@ public class MailboxTileEntity extends TileEntity implements IInventory{
     
     @Override
     public int getSizeInventory() {
-        return 27;
+        return MailboxTileEntity.inventory.length;
     }
     
     @Override
     public ItemStack getStackInSlot(int index) {
         if (index < 0 || index >= this.getSizeInventory())
             return null;
-        return this.inventory[index];
+        return MailboxTileEntity.inventory[index];
     }
     
     @Override
@@ -101,7 +101,7 @@ public class MailboxTileEntity extends TileEntity implements IInventory{
         if (stack != null && stack.stackSize == 0)
             stack = null;
         
-        this.inventory[index] = stack;
+        MailboxTileEntity.inventory[index] = stack;
         this.markDirty();
     }
     
