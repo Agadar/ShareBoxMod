@@ -75,7 +75,7 @@ public class MailboxBlock extends BlockContainer {
         
         if(!world.isRemote){
             mte.id = ModBlocks.getUniqueID();
-            ModBlocks.map.put(mte.id, new ItemStack[27]);
+            ModBlocks.map.put(mte.id, new ItemStack[9]);
             // Uncomment for debug
 //            System.out.println("------- created block with ID:" + mte.id);
 //            System.out.println(ModBlocks.map.size());
