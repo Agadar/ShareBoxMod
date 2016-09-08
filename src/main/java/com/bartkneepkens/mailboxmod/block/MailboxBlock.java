@@ -24,7 +24,6 @@ import net.minecraft.inventory.InventoryLargeChest;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
@@ -71,8 +70,22 @@ public class MailboxBlock extends BlockContainer {
     }
     
     @Override
-    public TileEntity createNewTileEntity(World p_149915_1_, int p_149915_2_) {
-        return new MailboxTileEntity();
+    public TileEntity createNewTileEntity(World world, int p_149915_2_) {
+        MailboxTileEntity mte = new MailboxTileEntity();
+        
+        if(!world.isRemote){
+            mte.id = ModBlocks.getUniqueID();
+            ModBlocks.map.put(mte.id, new ItemStack[27]);
+            // Uncomment for debug
+//            System.out.println("------- created block with ID:" + mte.id);
+//            System.out.println(ModBlocks.map.size());
+//            
+//            for (ItemStack[] msm : ModBlocks.map.values()) {
+//                System.out.println("///");
+//                System.out.println(msm);
+//            }
+        }
+        return mte;
     }
     
     // Stock code from the vanilla Chest for breaking.
@@ -137,6 +150,7 @@ public class MailboxBlock extends BlockContainer {
             {
                 p_149727_5_.displayGUIChest(iinventory);
             }
+            
 
             return true;
         }
@@ -183,7 +197,7 @@ public class MailboxBlock extends BlockContainer {
 
             if (p_149951_1_.getBlock(p_149951_2_ + 1, p_149951_3_, p_149951_4_) == this)
             {
-                object = new InventoryLargeChest("container.chestDouble", (MailboxTileEntity)object, (TileEntityChest)p_149951_1_.getTileEntity(p_149951_2_ + 1, p_149951_3_, p_149951_4_));
+                object = new InventoryLargeChest("container.chestDouble", (MailboxTileEntity)object, (MailboxTileEntity)p_149951_1_.getTileEntity(p_149951_2_ + 1, p_149951_3_, p_149951_4_));
             }
 
             if (p_149951_1_.getBlock(p_149951_2_, p_149951_3_, p_149951_4_ - 1) == this)

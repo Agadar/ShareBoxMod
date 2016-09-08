@@ -11,7 +11,6 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import net.minecraft.server.gui.IUpdatePlayerListBox;
 import net.minecraft.tileentity.TileEntity;
 
 /**
@@ -20,18 +19,19 @@ import net.minecraft.tileentity.TileEntity;
  */
 public class MailboxTileEntity extends TileEntity implements IInventory{
     
-    public static ItemStack[] inventory;
     private String customName;
+    
+    public int id;
     
     public MailboxTileEntity() {
     }
     
     public ItemStack[] getInventory() {
-        return MailboxTileEntity.inventory;
+        return ModBlocks.map.get(this.id);
     }
     
     public void setInventory(ItemStack[] inventory) {
-        MailboxTileEntity.inventory = inventory;
+         ModBlocks.map.put(this.id, inventory);
     }
     
     public String getCustomName() {
@@ -45,14 +45,14 @@ public class MailboxTileEntity extends TileEntity implements IInventory{
     
     @Override
     public int getSizeInventory() {
-        return MailboxTileEntity.inventory.length;
+        return ModBlocks.map.get(this.id).length;
     }
     
     @Override
     public ItemStack getStackInSlot(int index) {
         if (index < 0 || index >= this.getSizeInventory())
             return null;
-        return MailboxTileEntity.inventory[index];
+        return ModBlocks.map.get(this.id)[index];
     }
     
     @Override
@@ -101,13 +101,13 @@ public class MailboxTileEntity extends TileEntity implements IInventory{
         if (stack != null && stack.stackSize == 0)
             stack = null;
         
-        MailboxTileEntity.inventory[index] = stack;
+        ModBlocks.map.get(this.id)[index] = stack;
         this.markDirty();
     }
     
     @Override
     public String getInventoryName() {
-        return this.hasCustomInventoryName() ? this.customName : "container.mailboxEntity";
+        return this.hasCustomInventoryName() ? this.customName : "MailBoxxx";
     }
     
     @Override
@@ -139,7 +139,6 @@ public class MailboxTileEntity extends TileEntity implements IInventory{
     public boolean isItemValidForSlot(int p_94041_1_, ItemStack p_94041_2_) {
         return true;
     }
-    
     
     @Override
     public void writeToNBT(NBTTagCompound nbt) {
