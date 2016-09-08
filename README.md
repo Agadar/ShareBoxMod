@@ -1,2 +1,2 @@
 # MailMod
-A minecraft Forge mod that adds the functionality of mailboxes.
+A minecraft Forge mod that adds the functionality of ShareBoxes.

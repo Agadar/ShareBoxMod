@@ -3,9 +3,9 @@
 * To change this template file, choose Tools | Templates
 * and open the template in the editor.
 */
-package com.bartkneepkens.mailboxmod.tileentity;
+package com.bartkneepkens.shareboxmod.tileentity;
 
-import com.bartkneepkens.mailboxmod.block.ModBlocks;
+import com.bartkneepkens.shareboxmod.block.ModBlocks;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
@@ -17,13 +17,13 @@ import net.minecraft.tileentity.TileEntity;
  *
  * @author BartKneepkens
  */
-public class MailboxTileEntity extends TileEntity implements IInventory{
+public class ShareBoxTileEntity extends TileEntity implements IInventory{
     
     private String customName;
     
     public int id;
     
-    public MailboxTileEntity() {
+    public ShareBoxTileEntity() {
     }
     
     public ItemStack[] getInventory() {
@@ -107,7 +107,7 @@ public class MailboxTileEntity extends TileEntity implements IInventory{
     
     @Override
     public String getInventoryName() {
-        return this.hasCustomInventoryName() ? this.customName : "MailBoxxx";
+        return this.hasCustomInventoryName() ? this.customName : "ShareBoxxx";
     }
     
     @Override

@@ -3,10 +3,10 @@
 * To change this template file, choose Tools | Templates
 * and open the template in the editor.
 */
-package com.bartkneepkens.mailboxmod.block;
+package com.bartkneepkens.shareboxmod.block;
 
-import com.bartkneepkens.mailboxmod.MailBoxMod;
-import com.bartkneepkens.mailboxmod.tileentity.MailboxTileEntity;
+import com.bartkneepkens.shareboxmod.ShareBoxMod;
+import com.bartkneepkens.shareboxmod.tileentity.ShareBoxTileEntity;
 import java.util.Iterator;
 import java.util.Random;
 import net.minecraft.block.Block;
@@ -33,17 +33,17 @@ import static net.minecraftforge.common.util.ForgeDirection.DOWN;
  *
  * @author Bart  Kneepkens
  */
-public class MailboxBlock extends BlockContainer {
+public class ShareBoxBlock extends BlockContainer {
     
     // Stock Chest behaviour
     private final Random field_149955_b = new Random();
     
     public IIcon[] icons = new IIcon[6];
     
-    protected MailboxBlock(String name, Material material) {
+    protected ShareBoxBlock(String name, Material material) {
         super(material);
         this.setBlockName(name);
-        this.setBlockTextureName(MailBoxMod.MODID + ":" + name);
+        this.setBlockTextureName(ShareBoxMod.MODID + ":" + name);
         this.setCreativeTab(CreativeTabs.tabBlock);
         this.setHardness(2.0F);
         this.setResistance(6.0F);
@@ -55,11 +55,11 @@ public class MailboxBlock extends BlockContainer {
     @Override
     public void registerBlockIcons(IIconRegister reg) {
         for (int i = 0; i < 6; i ++) {
-            if(i == 4){
-                this.icons[i] = reg.registerIcon(this.textureName + "_side");
+            if(i == 1){
+                this.icons[i] = reg.registerIcon("repeater_on");
             }
             else {
-                this.icons[i] = reg.registerIcon("planks_oak");
+                this.icons[i] = reg.registerIcon("glass_blue");
             }
         }
     }
@@ -71,7 +71,7 @@ public class MailboxBlock extends BlockContainer {
     
     @Override
     public TileEntity createNewTileEntity(World world, int p_149915_2_) {
-        MailboxTileEntity mte = new MailboxTileEntity();
+        ShareBoxTileEntity mte = new ShareBoxTileEntity();
         
         if(!world.isRemote){
             mte.id = ModBlocks.getUniqueID();
@@ -91,7 +91,7 @@ public class MailboxBlock extends BlockContainer {
     // Stock code from the vanilla Chest for breaking.
     @Override
     public void breakBlock(World p_149749_1_, int p_149749_2_, int p_149749_3_, int p_149749_4_, Block p_149749_5_, int p_149749_6_){
-        MailboxTileEntity tileentitychest = (MailboxTileEntity)p_149749_1_.getTileEntity(p_149749_2_, p_149749_3_, p_149749_4_);
+        ShareBoxTileEntity tileentitychest = (ShareBoxTileEntity)p_149749_1_.getTileEntity(p_149749_2_, p_149749_3_, p_149749_4_);
         
         if (tileentitychest != null)
         {
@@ -158,7 +158,7 @@ public class MailboxBlock extends BlockContainer {
     
     public IInventory func_149951_m(World p_149951_1_, int p_149951_2_, int p_149951_3_, int p_149951_4_)
     {
-        Object object = (MailboxTileEntity)p_149951_1_.getTileEntity(p_149951_2_, p_149951_3_, p_149951_4_);
+        Object object = (ShareBoxTileEntity)p_149951_1_.getTileEntity(p_149951_2_, p_149951_3_, p_149951_4_);
 
         if (object == null)
         {
@@ -192,22 +192,22 @@ public class MailboxBlock extends BlockContainer {
         {
             if (p_149951_1_.getBlock(p_149951_2_ - 1, p_149951_3_, p_149951_4_) == this)
             {
-                object = new InventoryLargeChest("container.chestDouble", (MailboxTileEntity)p_149951_1_.getTileEntity(p_149951_2_ - 1, p_149951_3_, p_149951_4_), (IInventory)object);
+                object = new InventoryLargeChest("container.chestDouble", (ShareBoxTileEntity)p_149951_1_.getTileEntity(p_149951_2_ - 1, p_149951_3_, p_149951_4_), (IInventory)object);
             }
 
             if (p_149951_1_.getBlock(p_149951_2_ + 1, p_149951_3_, p_149951_4_) == this)
             {
-                object = new InventoryLargeChest("container.chestDouble", (MailboxTileEntity)object, (MailboxTileEntity)p_149951_1_.getTileEntity(p_149951_2_ + 1, p_149951_3_, p_149951_4_));
+                object = new InventoryLargeChest("container.chestDouble", (ShareBoxTileEntity)object, (ShareBoxTileEntity)p_149951_1_.getTileEntity(p_149951_2_ + 1, p_149951_3_, p_149951_4_));
             }
 
             if (p_149951_1_.getBlock(p_149951_2_, p_149951_3_, p_149951_4_ - 1) == this)
             {
-                object = new InventoryLargeChest("container.chestDouble", (MailboxTileEntity)p_149951_1_.getTileEntity(p_149951_2_, p_149951_3_, p_149951_4_ - 1), (IInventory)object);
+                object = new InventoryLargeChest("container.chestDouble", (ShareBoxTileEntity)p_149951_1_.getTileEntity(p_149951_2_, p_149951_3_, p_149951_4_ - 1), (IInventory)object);
             }
 
             if (p_149951_1_.getBlock(p_149951_2_, p_149951_3_, p_149951_4_ + 1) == this)
             {
-                object = new InventoryLargeChest("container.chestDouble", (IInventory)object, (MailboxTileEntity)p_149951_1_.getTileEntity(p_149951_2_, p_149951_3_, p_149951_4_ + 1));
+                object = new InventoryLargeChest("container.chestDouble", (IInventory)object, (ShareBoxTileEntity)p_149951_1_.getTileEntity(p_149951_2_, p_149951_3_, p_149951_4_ + 1));
             }
 
             return (IInventory)object;

@@ -3,9 +3,9 @@
 * To change this template file, choose Tools | Templates
 * and open the template in the editor.
 */
-package com.bartkneepkens.mailboxmod;
+package com.bartkneepkens.shareboxmod;
 
-import com.bartkneepkens.mailboxmod.proxy.CommonProxy;
+import com.bartkneepkens.shareboxmod.proxy.CommonProxy;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -18,14 +18,14 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
  *
  * @author BartKneepkens
  */
-@Mod(modid = MailBoxMod.MODID, name = MailBoxMod.MODNAME, version = MailBoxMod.VERSIONID)
-public class MailBoxMod{
+@Mod(modid = ShareBoxMod.MODID, name = ShareBoxMod.MODNAME, version = ShareBoxMod.VERSIONID)
+public class ShareBoxMod{
     
-    public static final String MODID = "mailboxmod";
-    public static final String MODNAME = "Mailbox Mod";
+    public static final String MODID = "ShareBoxmod";
+    public static final String MODNAME = "ShareBox Mod";
     public static final String VERSIONID = "1.0.0";
     
-    @SidedProxy(clientSide="com.bartkneepkens.mailboxmod.proxy.ClientProxy", serverSide="com.bartkneepkens.mailboxmod.proxy.ServerProxy")
+    @SidedProxy(clientSide="com.bartkneepkens.shareboxmod.proxy.ClientProxy", serverSide="com.bartkneepkens.shareboxmod.proxy.ServerProxy")
     public static CommonProxy proxy;
     
     @EventHandler

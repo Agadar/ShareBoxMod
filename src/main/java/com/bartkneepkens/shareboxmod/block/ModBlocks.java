@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.bartkneepkens.mailboxmod.block;
+package com.bartkneepkens.shareboxmod.block;
 
-import com.bartkneepkens.mailboxmod.tileentity.MailboxTileEntity;
+import com.bartkneepkens.shareboxmod.tileentity.ShareBoxTileEntity;
 import cpw.mods.fml.common.registry.GameRegistry;
 import java.util.HashMap;
 import java.util.Map;
@@ -21,7 +21,7 @@ import net.minecraft.item.ItemStack;
  */
 public class ModBlocks {
     
-    public static Block mailboxBlock;
+    public static Block ShareBoxBlock;
     
     public static Map<Integer, ItemStack[]> map;
     
@@ -30,9 +30,9 @@ public class ModBlocks {
 
     public static final void init() {
         map = new HashMap<Integer, ItemStack[]>();
-        GameRegistry.registerBlock(mailboxBlock = new MailboxBlock("mailbox", Material.wood), "mailbox");
-        GameRegistry.addRecipe(new ItemStack(ModBlocks.mailboxBlock, 2), "###", "$ $", "###", '#', Blocks.planks, '$', Items.iron_ingot);
-        GameRegistry.registerTileEntity(MailboxTileEntity.class, "mailboxEntity");
+        GameRegistry.registerBlock(ShareBoxBlock = new ShareBoxBlock("ShareBox", Material.wood), "ShareBox");
+        GameRegistry.addRecipe(new ItemStack(ModBlocks.ShareBoxBlock, 2), "###", "$ $", "###", '#', Blocks.planks, '$', Items.iron_ingot);
+        GameRegistry.registerTileEntity(ShareBoxTileEntity.class, "ShareBoxEntity");
     }
     
     public static int getUniqueID(){
