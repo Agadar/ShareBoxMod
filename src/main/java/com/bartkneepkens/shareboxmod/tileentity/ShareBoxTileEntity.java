@@ -143,37 +143,13 @@ public class ShareBoxTileEntity extends TileEntity implements IInventory{
     @Override
     public void writeToNBT(NBTTagCompound nbt) {
         super.writeToNBT(nbt);
-        
-        NBTTagList list = new NBTTagList();
-        for (int i = 0; i < this.getSizeInventory(); ++i) {
-            if (this.getStackInSlot(i) != null) {
-                NBTTagCompound stackTag = new NBTTagCompound();
-                stackTag.setByte("Slot", (byte) i);
-                this.getStackInSlot(i).writeToNBT(stackTag);
-                list.appendTag(stackTag);
-            }
-        }
-        nbt.setTag("Items", list);
-        
-        if (this.hasCustomInventoryName()) {
-            nbt.setString("CustomName", this.getCustomName());
-        }
+        nbt.setInteger("ShareID", this.id);
     }
     
     @Override
     public void readFromNBT(NBTTagCompound nbt) {
         super.readFromNBT(nbt);
-        
-        NBTTagList list = nbt.getTagList("Items", 10);
-        for (int i = 0; i < list.tagCount(); ++i) {
-            NBTTagCompound stackTag = list.getCompoundTagAt(i);
-            int slot = stackTag.getByte("Slot") & 255;
-            this.setInventorySlotContents(slot, ItemStack.loadItemStackFromNBT(stackTag));
-        }
-        
-        if (nbt.hasKey("CustomName", 8)) {
-            this.setCustomName(nbt.getString("CustomName"));
-        }
+        this.id = nbt.getInteger("ShareID");
     }
     
 }
