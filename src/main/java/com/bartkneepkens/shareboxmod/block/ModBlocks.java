@@ -14,6 +14,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import worldsavedata.ShareBoxWorldSaveData;
 
 /**
  *
@@ -29,8 +30,9 @@ public class ModBlocks {
     public static boolean shouldUp = false;
 
     public static final void init() {
-        map = new HashMap<Integer, ItemStack[]>();
-        GameRegistry.registerBlock(ShareBoxBlock = new ShareBoxBlock("ShareBox", Material.wood), "ShareBox");
+        //map = new HashMap<Integer, ItemStack[]>();
+        
+        GameRegistry.registerBlock(ShareBoxBlock = new ShareBoxBlock("sharebox", Material.wood), "sharebox");
         GameRegistry.addRecipe(new ItemStack(ModBlocks.ShareBoxBlock, 2), "###", "$ $", "###", '#', Blocks.planks, '$', Items.iron_ingot);
         GameRegistry.registerTileEntity(ShareBoxTileEntity.class, "ShareBoxEntity");
     }

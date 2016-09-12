@@ -12,6 +12,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
+import worldsavedata.ShareBoxWorldSaveData;
 
 /**
  *
@@ -19,11 +20,14 @@ import net.minecraft.tileentity.TileEntity;
  */
 public class ShareBoxTileEntity extends TileEntity implements IInventory{
     
+    //public ShareBoxWorldSaveData saveData = new ShareBoxWorldSaveData("kutje");
+    
     private String customName;
     
     public int id;
     
     public ShareBoxTileEntity() {
+        
     }
     
     public ItemStack[] getInventory() {
@@ -50,6 +54,9 @@ public class ShareBoxTileEntity extends TileEntity implements IInventory{
     
     @Override
     public ItemStack getStackInSlot(int index) {
+        //System.out.println("-------- Methode aangeroepen.");
+        //saveData.markDirty();
+        //System.out.println(saveData.isDirty());
         if (index < 0 || index >= this.getSizeInventory())
             return null;
         return ModBlocks.map.get(this.id)[index];

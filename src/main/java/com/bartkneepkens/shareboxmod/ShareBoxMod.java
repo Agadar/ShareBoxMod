@@ -13,6 +13,9 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import eventhandlers.OnSaveHandler;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraft.client.Minecraft;
 
 /**
  *
@@ -21,7 +24,7 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 @Mod(modid = ShareBoxMod.MODID, name = ShareBoxMod.MODNAME, version = ShareBoxMod.VERSIONID)
 public class ShareBoxMod{
     
-    public static final String MODID = "ShareBoxmod";
+    public static final String MODID = "sharebox";
     public static final String MODNAME = "ShareBox Mod";
     public static final String VERSIONID = "1.0.0";
     
@@ -36,6 +39,8 @@ public class ShareBoxMod{
     @EventHandler
     public void init(FMLInitializationEvent e) {
         proxy.init(e);
+        MinecraftForge.EVENT_BUS.register(new OnSaveHandler());
+        
     }
     
     @EventHandler
